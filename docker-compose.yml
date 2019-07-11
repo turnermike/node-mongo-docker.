@@ -7,7 +7,7 @@ services:
       context: .
       dockerfile: Dockerfile
     image: nodejs
-    container_name: mynoderestapi-nodejs
+    container_name: nodejs
     restart: unless-stopped
     env_file: .env
     environment:
@@ -27,7 +27,7 @@ services:
 
   db:
     image: mongo:4.1.8-xenial
-    container_name: mynoderestapi-db
+    container_name: db
     restart: unless-stopped
     env_file: .env
     environment:
@@ -36,12 +36,12 @@ services:
     volumes:
       - dbdata:/data/db
     networks:
-      - mynoderestapi-network
+      - app-network
     ports:
       - "27017:27017"
 
 networks:
-  mynoderestapi-network:
+  app-network:
     driver: bridge
 
 volumes:
